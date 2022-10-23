@@ -13,8 +13,8 @@ RED = (255,90,10)
 GREY = (100,100,100)
 BLUE = (0,0,255)
 YELLOW = (255,255,0)
-BACKGROUND_COLOR = (50,50,50)
-TORCH_COLOUR = (60, 60, 60)
+BACKGROUND_COLOR = [50,50,50]
+TORCH_COLOUR = [element * 3 for element in BACKGROUND_COLOR]
 
 player_size = 50
 player_pos = [WIDTH/2, HEIGHT-2*player_size]
@@ -22,8 +22,6 @@ player_pos = [WIDTH/2, HEIGHT-2*player_size]
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 game_over = False
-
-
 
 player = Square(100, 100, 50, 90, YELLOW, TORCH_COLOUR)
 guard0 = Guard(300, 300, 50, 0, RED, TORCH_COLOUR, (100, 100, 600, 600), 0.5)

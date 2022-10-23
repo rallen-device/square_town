@@ -67,7 +67,7 @@ class Square():
         self.position = ObjectPosition(x, y)
         self.size = size
         self.direction = Direction(direction)
-        self.torch = Torch(10, 5, 5, self)
+        self.torch = Torch(50, 2, 2, self)
         self.torch.enable = False
         self.rect = None
         self.body_colour = body_colour
@@ -104,9 +104,14 @@ class Square():
         """
         dictionary = []
         if self.invisible == 0 or self.invisible == 2 or self.invisible == 4:
-            dictionary.append({'colour': self.body_colour, 'rectangle': self.rect})
+            body_colour = self.body_colour
+            if self.invisible != 0:
+                body_colour = [element * 0.5 for element in self.body_colour]
+            dictionary.append({'colour': body_colour, 'rectangle': self.rect})
+            rotating_colour = self.torch_colour
             for rectangle in self.torch.get_rectangles():
-                dictionary.append({'colour': self.torch_colour, 'rectangle': rectangle})
+                rotating_colour = [element * 0.99 for element in rotating_colour]
+                dictionary.append({'colour': rotating_colour, 'rectangle': rectangle})
         return dictionary
 
     def toggle_invisible(self) -> None:
