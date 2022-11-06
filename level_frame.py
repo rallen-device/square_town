@@ -48,7 +48,7 @@ class LevelFrame():
         )
         self.screen.blit(text, text_rect)
         for index in range(constants.NUM_LIVES):
-            if self.player.lives > (index - 1):
+            if self.player.lives > index:
                 pygame.draw.rect(
                     self.screen,
                     self.player.body_colour,

@@ -42,12 +42,17 @@ class Level():
             speech = npc.get_speech()
             if speech != "":
                 text = self.font.render(speech, True, npc.body_colour)
-                self.screen.blit(text, npc.aura_rect)
+                text_rect = text.get_rect(
+                    centerx = npc.position.x,
+                    centery = npc.position.y - npc.size
+                )
+                self.screen.blit(text, text_rect)
         for baddie in self.baddies:
             for baddie_rect in baddie.get_rectangles():
                 for player_rect in self.player.get_rectangles():
                     if player_rect['rectangle'].colliderect(baddie_rect['rectangle']):
                         self.player.dead()
+                        return
 
 
 class DeadScreen(Level):
@@ -70,13 +75,6 @@ class DeadScreen(Level):
             )
         )
         self.screen.blit(text, text_rect)
-
-    # def not_dead(self) -> None:
-    #     """_summary_
-
-    #     Returns:
-    #         _type_: _description_
-    #     """
 
 
 class Levels():

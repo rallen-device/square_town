@@ -29,10 +29,11 @@ class Level1(Level):
         """Resets the level
         """
         super().reset()
-        scared_person = NPC(400, 100, constants.PLAYER_SZIE, 180, constants.GREY, constants.TORCH_COLOUR, (400, 400, 400, 400), 1.5)
+        scared_person = NPC(400, 100, constants.PLAYER_SZIE, 180, constants.NPC, constants.TORCH_COLOUR, (400, 400, 400, 400), 1.5)
         self.player.position.y = 100
         self.player.position.x = 100
-        self.player.direction.direction = 180
+        self.player.direction.direction = 0
+        self.player.update_rectangle()
         self.scared_person = scared_person
         self.npcs = [self.scared_person]
         self.squares = [scared_person, self.player]
@@ -69,7 +70,7 @@ class Level1(Level):
                 self.guard = Guard(0, 500, constants.PLAYER_SZIE, 0, constants.RED, constants.TORCH_COLOUR, (0, 0, constants.WIDTH, constants.HEIGHT), 0.4)
                 self.baddies.append(self.guard)
                 self.guard.start_actions()
-                self.guard.talk("All hail the round edged man", 10)
+                self.guard.talk("I like that circle I do", 10)
                 self.npcs.append(self.guard)
                 self.squares.append(self.guard)
             if self.guard.get_speech() == "":
